@@ -10,6 +10,7 @@ struct DocController: RouteCollection {
         docsRouter.get("create", use: createHandler)
         docsRouter.post(use: createPostHandler)
         docsRouter.get(Doc.parameter, use: docInfoHandler)
+        docsRouter.get(Doc.parameter, "json", use: docJSONHandler)
     }
     
     func createHandler(_ req: Request) throws -> Future<View> {
@@ -31,7 +32,13 @@ struct DocController: RouteCollection {
         }
     }
     
-    func docInfoHandler(_ req: Request) throws -> Future<Doc> {
+    func docInfoHandler(_ req: Request) throws -> Future<View> {
+        return try req.parameters.next(Doc.self).flatMap(to: View.self) { doc in
+            return try req.leaf().render("docInfo", doc)
+        }
+    }
+    
+    func docJSONHandler(_ req: Request) throws -> Future<Doc> {
         return try req.parameters.next(Doc.self)
     }
     
