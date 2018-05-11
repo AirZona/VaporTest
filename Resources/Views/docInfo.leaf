@@ -1,5 +1,5 @@
 #set("content") {
-<h1>Doc: #(doc.name)</h1>
+<h1>Doc: #(name)</h1>
 }
 
 #embed("base")
