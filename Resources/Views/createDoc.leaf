@@ -1,0 +1,10 @@
+#set("content") {
+    <form action="/docs" method="post">
+    Name:<br>
+    <input type="text" name="name"><br>
+    <br>
+    <input type="submit" value="Submit">
+    </form>
+}
+
+#embed("base")

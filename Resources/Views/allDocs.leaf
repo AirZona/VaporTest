@@ -1,0 +1,28 @@
+#set("content") {
+    <h1>All Docs:</h1>
+    <br />
+    <a class="btn btn-primary" href="/docs/create">Create Doc</a>
+    <br />
+    <br />
+    #if(docs) {
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID #</th>
+            <th scope="col">name</th>
+          </tr>
+        </thead>
+        <tbody>
+          #for(doc in docs) {
+            <tr>
+              <th scope="row">#(doc.id)</th>
+              <td><a href="/docs/#(doc.id)">#(doc.name)</a></td>
+            </tr>
+          }
+
+        </tbody>
+      </table>
+    }
+}
+
+#embed("base")
